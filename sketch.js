@@ -17,15 +17,13 @@ function setup() {
 	createCanvas(800, 700);
 	rectMode(CENTER);
 	
-	leftEdgeBody = Bodies.rectangle((width/2)-15,height-50,20,100);
-	rightEdgeBody = Bodies.rectangle((width/2)+15,height-35,20,100);
-	bottomBody = Bodies.rectangle(width/2,height-20,200,20);
+	leftEdgeBody = Bodies.rectangle((width/2)-110,height-80,20,100);
+	rightEdgeBody = Bodies.rectangle((width/2)+110,height-80,20,100);
+	bottomBody = Bodies.rectangle(width/2,height-50,200,20);
 
-
-
-	leftEdgeBody = color(350,0,0);
-	rightEdgeBody = color(350,0,0);
-	bottomBody = color(350,0,0);
+ 	/*leftEdgeBody = rgb(255,0,0);
+	rightEdgeBody = rgb(255,0,0);
+	bottomBody = rgb(255,0,0);*/
 
 	packageSprite=createSprite(width/2, 80, 10,10);
 	packageSprite.addImage(packageIMG)
@@ -38,9 +36,9 @@ function setup() {
 	groundSprite=createSprite(width/2, height-35, width,10);
 	groundSprite.shapeColor=color(255)
 
-	leftEdgeBody.body.position.x = leftEdgeSprite.x;
-	rightEdgeBody.position.x = rightEdgeSprite.x;
-	bottomBody.position.x = bottomSprite.x;
+	/*leftEdgeSprite.x=leftEdgeBody.position.x;  
+ 	rightEdgeSprite.x=rightEdgeBody.position.x ;
+	bottomSprite.x = bottomBody.position.x;*/
 
 	engine = Engine.create();
 	world = engine.world;
@@ -62,14 +60,16 @@ function setup() {
 function draw() {
   rectMode(CENTER);
   background(0);
+  rect(leftEdgeBody.position.x,leftEdgeBody.position.y,20,100);
+  rect(rightEdgeBody.position.x,rightEdgeBody.position.y,20,100);
+  rect(bottomBody.position.x,bottomBody.position.y,200,20);
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
   drawSprites();
-  keyPressed();
 }
 
 function keyPressed() {
- if (keyCode === DOWN_ARROW) 
+ if (keyDown('down')) 
  {
      Matter.Body.setStatic(packageBody,false);  
  }
